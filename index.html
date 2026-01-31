@@ -1,235 +1,135 @@
-.<!DOCTYPE html>
-<html lang="pl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Usługi Remontowo-Budowlane Rafał Ciastek | Kłodzko</title>
-<meta name="description" content="Kompleksowe wykończenia wnętrz i docieplenia budynków w Kłodzku i okolicach. Darmowa wycena. Zadzwoń 609 267 559.">
+     <p>
+  import { motion } from "framer-motion";
+import { Phone, Mail, Hammer, ShieldCheck, Clock, Star } from "lucide-react";
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+export default function App() {
+  return (
+    <div className="bg-slate-950 text-white font-sans">
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  .gallery img {
-  width: 100%;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+      {/* HERO */}
+      <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Budowa"
+        />
+        <div className="absolute inset-0 bg-black/70"></div>
 
-.gallery img:hover {
-  transform: scale(1.05);
-}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 px-6"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Solidne Remonty <br /> Bez Kompromisów
+          </h1>
+          <p className="text-xl text-gray-300 mb-8">
+            Kompleksowe usługi remontowo-budowlane
+          </p>
 
-/* LIGHTBOX */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  padding-top: 60px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-}
+          <div className="flex gap-4 justify-center flex-wrap">
+            <a
+              href="tel:691795166"
+              className="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-2xl font-semibold shadow-xl hover:scale-105 transition"
+            >
+              Zadzwoń teraz
+            </a>
+            <a
+              href="#realizacje"
+              className="border border-white/30 hover:bg-white/10 px-8 py-4 rounded-2xl transition"
+            >
+              Zobacz realizacje
+            </a>
+          </div>
+        </motion.div>
+      </section>
 
-.lightbox img {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 10px;
-}
+      {/* DLACZEGO MY */}
+      <section className="py-20 px-6 max-w-6xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-16">
+          Dlaczego warto nam zaufać?
+        </h2>
 
-.close {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: white;
-  font-size: 40px;
-  cursor: pointer;
-}
-}
-<div id="lightbox" class="lightbox">
-  <span class="close">&times;</span>
-  <img id="lightbox-img">
-</div>
+        <div className="grid md:grid-cols-4 gap-8">
+          {[
+            { icon: <Hammer />, text: "10+ lat doświadczenia" },
+            { icon: <Clock />, text: "Terminowość" },
+            { icon: <ShieldCheck />, text: "Gwarancja jakości" },
+            { icon: <Star />, text: "Zadowoleni klienci" },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              className="bg-slate-900 p-8 rounded-2xl shadow-lg text-center border border-slate-800"
+            >
+              <div className="flex justify-center mb-4 text-orange-500">
+                {item.icon}
+              </div>
+              <p className="text-lg">{item.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-<script>
-  const images = document.querySelectorAll('.gallery img');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeBtn = document.querySelector('.close');
+      {/* REALIZACJE */}
+      <section id="realizacje" className="py-20 bg-slate-900 px-6">
+        <h2 className="text-4xl font-bold text-center mb-16">
+          Nasze realizacje
+        </h2>
 
-  images.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'block';
-      lightboxImg.src = img.src;
-    });
-  });
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[1, 2, 3].map((item) => (
+            <div
+              key={item}
+              className="overflow-hidden rounded-2xl group"
+            >
+              <img
+                src={`https://source.unsplash.com/600x400/?construction,house&sig=${item}`}
+                className="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
+                alt="Realizacja"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
+      {/* CTA */}
+      <section className="py-20 text-center px-6">
+        <h2 className="text-4xl font-bold mb-6">
+          Masz plan na remont?
+        </h2>
+        <p className="text-gray-400 mb-8">
+          Skontaktuj się i wycenimy Twoją realizację.
+        </p>
 
-  lightbox.addEventListener('click', (e) => {
-    if (e.target !== lightboxImg) {
-      lightbox.style.display = 'none';
-    }
-  });
-</script>
-body {
-  font-family: 'Inter', sans-serif;
-  color: #222;
-  background: #f5f5f5;
-  line-height: 1.6;
-}
+        <div className="flex justify-center gap-6 flex-wrap">
+          <a
+            href="tel:691795166"
+            className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-2xl font-semibold shadow-lg hover:scale-105 transition"
+          >
+            <Phone size={18} />
+            691 795 166
+          </a>
 
-section {
-  padding: 80px 20px;
-}
+          <a
+            href="mailto:twojmail@gmail.com"
+            className="flex items-center gap-2 border border-white/30 hover:bg-white/10 px-8 py-4 rounded-2xl transition"
+          >
+            <Mail size={18} />
+            Napisz email
+          </a>
+        </div>
+      </section>
 
-.container {
-  max-width: 1100px;
-  margin: auto;
-}
+      {/* FOOTER */}
+      <footer className="bg-slate-950 border-t border-slate-800 py-8 text-center text-gray-500">
+        © {new Date().getFullYear()} Usługi Remontowo-Budowlane
+      </footer>
 
-h1, h2 {
-  font-family: 'Poppins', sans-serif;
-}
-
-h1 {
-  font-size: 32px;
-}
-
-h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
-}
-
-  .hero {
-  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-  url('FB_IMG_1769832804044.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  text-align: center;
-  padding: 140px 20px;
-.hero p {
-  margin: 20px 0;
-  font-size: 18px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  margin: 10px;
-  background: #f97316;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #ea580c;
-}
-
-.dark {
-  background: #111;
-  color: white;
-}
-
-.services {
-  display: grid;
-  gap: 30px;
-}
-
-.service-box {
-  background: white;
-  padding: 25px;
-  border-radius: 8px;
-}
-
-.dark .service-box {
-  background: #1a1a1a;
-}
-
-.gallery {
-  display: grid;
-  gap: 15px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.contact-box {
-  text-align: center;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #000;
-  color: white;
-  font-size: 14px;
-}
-
-@media(min-width:768px) {
-  .services {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  
-  }
-}
-</style>
-</head>
-  <title>Remonty i docieplenia budynków Kłodzko | Rafał Ciastek</title>
-
-<meta name="description" content="Kompleksowe remonty mieszkań, wykończenia wnętrz i docieplenia budynków w Kłodzku i powiecie kłodzkim. Darmowa wycena – zadzwoń 609 267 559.">
-
-<meta name="keywords" content="remonty Kłodzko, wykończenia wnętrz Kłodzko, docieplenia budynków Kłodzko, firma budowlana Kłodzko">
-
-<meta name="author" content="Usługi Remontowo-Budowlane Rafał Ciastek">
-
-<meta property="og:title" content="Remonty i docieplenia budynków Kłodzko | Rafał Ciastek">
-<meta property="og:description" content="Solidne remonty i docieplenia budynków w Kłodzku. Darmowa wycena.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pl_PL">
-  <script type="application/ld+json">
-{
-    <section>
-  <div class="container">
-    <h2>Remonty i docieplenia budynków – Kłodzko i powiat kłodzki</h2>
-
-    <p>
-    Usługi Remontowo-Budowlane Rafał Ciastek to firma działająca na terenie Kłodzka, Dusznik-Zdroju, Polanicy-Zdroju oraz całego powiatu kłodzkiego. 
-    Specjalizujemy się w kompleksowych remontach mieszkań i domów, wykończeniach wnętrz oraz dociepleniach budynków jednorodzinnych.
-    </p>
-
-    <p>
-    Wykonujemy zarówno mniejsze prace wykończeniowe, jak i pełne realizacje „od A do Z”. 
-    Oferujemy m.in. gładzie, malowanie, układanie płytek, zabudowy karton-gips, remonty łazienek oraz kompleksowe modernizacje wnętrz. 
-    Zajmujemy się również dociepleniami elewacji, pracami termomodernizacyjnymi oraz poprawą efektywności energetycznej budynków.
-    </p>
-
-    <p>
-    Każde zlecenie realizujemy z dbałością o szczegóły i terminowość. 
-    Stawiamy na solidne wykonanie, przejrzyste warunki współpracy oraz uczciwą wycenę bez ukrytych kosztów. 
-    Nasze usługi budowlane w Kłodzku cieszą się zaufaniem klientów prywatnych oraz inwestorów.
-    </p>
-
-    <p>
-    Jeśli planujesz remont mieszkania, wykończenie nowego domu lub docieplenie budynku w Kłodzku i okolicach – skontaktuj się z nami. 
+    </div>
+  );
+}  Jeśli planujesz remont mieszkania, wykończenie nowego domu lub docieplenie budynku w Kłodzku i okolicach – skontaktuj się z nami. 
     Oferujemy bezpłatną wycenę oraz fachowe doradztwo na każdym etapie realizacji.
     </p>
 
@@ -258,90 +158,10 @@ footer {
 
 <body>
 
-<section class="hero">
-  <div class="container">
-    <h1>Remontujesz? Zrób to raz, a porządnie.</h1>
-    <p>Kompleksowe wykończenia i docieplenia w Kłodzku. Darmowa wycena.</p>
-    <a href="tel:609267559" class="btn">📞 609 267 559</a>
-    <a href="mailto:rafalc51@wp.pl" class="btn">📩 Napisz e-mail</a>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2>O firmie</h2>
-    <p>Usługi Remontowo-Budowlane Rafał Ciastek z siedzibą w Kłodzku oferują kompleksowe wykończenia wnętrz oraz docieplenia budynków na terenie powiatu kłodzkiego.</p>
-    <p>Stawiamy na solidność, terminowość i uczciwe podejście do każdego klienta.</p>
-  </div>
-</section>
-
-<section class="dark">
-  <div class="container">
-    <h2>Nasze Usługi</h2>
-    <div class="services">
-      <div class="service-box">
-        <h3>Wykończenia wnętrz</h3>
-        <p>Gładzie, malowanie, płytki, zabudowy GK oraz kompleksowe remonty mieszkań.</p>
-      </div>
-      <div class="service-box">
-        <h3>Docieplenia budynków</h3>
-        <p>Styropian, elewacje oraz prace termomodernizacyjne domów jednorodzinnych.</p>
-      </div>
-      <div class="service-box">
-        <h3>Remonty kompleksowe</h3>
-        <p>Pełna realizacja od przygotowania po finalne wykończenie.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2>Realizacje</h2>
-    <div class="gallery
-      <img src="docieplenie-elewacji-klodzko.FB_IMG_1769835720997.jpg" alt="Docieplenie elewacji budynku w Kłodzku">
-  <img src="FB_IMG_1769824127918.jpg" alt="Przed" width="300">
-<img src="FB_IMG_1769824136681.jpg" alt="Po" width="300">
-<img src="FB_IMG_1769824195970.jpg" alt="Przed" width="300">
-      <img src="FB_IMG_1769824190370.jpg" alt="Po" width="300">
-      <img src="FB_IMG_1769824226530.jpg" alt="Tak na szybko 😉" width="300">
-    </div>
-  </div>
-</section>
-  <section>
-  <div class="container">
-    <h2>Dlaczego warto nam zaufać?</h2>
-    <div class="services">
-      <div class="service-box">
+">
         <h3>Solidne wykonanie</h3>
         <p>Stawiamy na dokładność i trwałość realizacji.</p>
       </div>
       <div class="service-box">
         <h3>Terminowość</h3>
         <p>Realizujemy zlecenia zgodnie z ustalonym harmonogramem.</p>
-      </div>
-      <div class="service-box">
-        <h3>Uczciwa wycena</h3>
-        <p>Bez ukrytych kosztów i nieprzyjemnych niespodzianek.</p>
-      </div>
-    </div>
-  </div>
-  </section>
-
-<section class="dark">
-  <div class="container contact-box">
-    <h2>Potrzebujesz wyceny?</h2>
-    <p>Zadzwoń lub napisz – odpowiadamy szybko i konkretnie.</p>
-    <p><strong>📞 609 267 559</strong></p>
-    <p>📩 rafalc51@wp.pl</p>
-    <p>ul. Szarego Floriana 4, 57-300 Kłodzko</p>
-    <p>NIP: 8831793013</p>
-  </div>
-</section>
-
-<footer>
-© 2026 Usługi Remontowo-Budowlane Rafał Ciastek | Kłodzko
-</footer>
-
-</body>
-</html>
